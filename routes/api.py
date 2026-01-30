@@ -89,3 +89,60 @@ def get_task(task_id):
         return jsonify({'error': 'Task not found'}), 404
     
     return jsonify(task.to_dict()), 200
+
+@api_bp.route('/tasks/<int:task_id>', methods=['PUT'])
+def update_task(task_id):
+    """Update an existing task"""
+    task = Task.query.get(task_id)
+    
+    if not task:
+        return jsonify({'error': 'Task not found'}), 404
+    
+    data = request.get_json()
+    
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+    
+    # Update title if provided
+    if 'title' in data:
+        if not data['title'].strip():
+            return jsonify({'error': 'Title cannot be empty'}), 400
+        task.title = data['title'].strip()
+    
+    # Update description if provided
+    if 'description' in data:
+        task.description = data['description']
+    
+    # Update status if provided
+    if 'status' in data:
+        valid_statuses = ['todo', 'in_progress', 'done']
+        if data['status'] not in valid_statuses:
+            return jsonify({'error': 'Invalid status. Must be: todo, in_progress, or done'}), 400
+        task.status = data['status']
+    
+    # Update due_date if provided
+    if 'due_date' in data:
+        if data['due_date']:
+            try:
+                task.due_date = datetime.strptime(data['due_date'], '%Y-%m-%d').date()
+            except ValueError:
+                return jsonify({'error': 'Invalid due_date format. Use YYYY-MM-DD'}), 400
+        else:
+            task.due_date = None
+    
+    db.session.commit()
+    return jsonify(task.to_dict()), 200
+
+
+@api_bp.route('/tasks/<int:task_id>', methods=['DELETE'])
+def delete_task(task_id):
+    """Delete a task"""
+    task = Task.query.get(task_id)
+    
+    if not task:
+        return jsonify({'error': 'Task not found'}), 404
+    
+    db.session.delete(task)
+    db.session.commit()
+    
+    return jsonify({'message': 'Task deleted successfully'}), 200
