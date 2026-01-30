@@ -40,3 +40,52 @@ def create_task():
     db.session.commit()
     
     return jsonify(task.to_dict()), 201
+
+
+@api_bp.route('/tasks', methods=['GET'])
+def list_tasks():
+    """List all tasks with optional filters"""
+    # Get query parameters
+    status_filter = request.args.get('status')
+    search_query = request.args.get('q')
+    sort_by = request.args.get('sort', 'created_at')
+    
+    # Start with base query
+    query = Task.query
+    
+    # Apply status filter
+    if status_filter:
+        valid_statuses = ['todo', 'in_progress', 'done']
+        if status_filter not in valid_statuses:
+            return jsonify({'error': 'Invalid status filter'}), 400
+        query = query.filter_by(status=status_filter)
+    
+    # Apply search filter
+    if search_query:
+        search_pattern = f'%{search_query}%'
+        query = query.filter(
+            db.or_(
+                Task.title.like(search_pattern),
+                Task.description.like(search_pattern)
+            )
+        )
+    
+    # Apply sorting
+    if sort_by == 'due_date':
+        query = query.order_by(Task.due_date.asc())
+    else:
+        query = query.order_by(Task.created_at.desc())
+    
+    tasks = query.all()
+    return jsonify([task.to_dict() for task in tasks]), 200
+
+
+@api_bp.route('/tasks/<int:task_id>', methods=['GET'])
+def get_task(task_id):
+    """Get a single task by ID"""
+    task = Task.query.get(task_id)
+    
+    if not task:
+        return jsonify({'error': 'Task not found'}), 404
+    
+    return jsonify(task.to_dict()), 200
