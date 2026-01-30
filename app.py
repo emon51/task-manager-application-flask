@@ -2,12 +2,16 @@ from flask import Flask
 from config import Config
 from models import db
 from models.task import Task
+from routes.api import api_bp
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
 # Initialize database
 db.init_app(app)
+
+# Register blueprints
+app.register_blueprint(api_bp)
 
 @app.route('/')
 def home():
