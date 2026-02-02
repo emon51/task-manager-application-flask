@@ -46,3 +46,48 @@ task-manager/
 └── README.md                # README.md file
 ```
 
+## Installation
+
+### 1. Clone the repository or download the zip file of this project
+```bash
+git clone https://github.com/emon51/task-manager-application-flask.git
+```
+
+### 2. Create virtual environment
+```bash
+python3 -m venv venv
+```
+
+### 3. Activate virtual environment
+**On Windows:**
+```bash
+venv\Scripts\activate
+```
+**On Mac/Linux:**
+```bash
+source venv/bin/activate
+```
+
+### 4. Create a directory named '**data**' in the root directory
+```bash
+mkdir data
+```
+
+### 5. Rename **.env.example** file to **.env**
+```bash
+mv .env.example .env
+```
+
+### 6. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+
+### 7. Run the application
+```bash
+python3 app.py
+```
+
+The application will be available at `http://127.0.0.1:5000/`
+
