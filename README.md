@@ -20,30 +20,30 @@ A simple task management application built with Flask that provides both REST AP
 
 ## Project Structure
 ```
-task-manager/
-├── app.py                   # Application entry point
+task-manager-application-flask/
+├── app.py                        # Application entry point
 ├── templates/
-│   ├── base.html            # Base template
-│   ├── home.html            # Home page
-│   └── tasks.html           # Tasks listing page
+│   ├── base.html                 # Base template
+│   ├── home.html                 # Home page
+│   └── tasks.html                # Tasks listing page
 ├── static/
-│   └── style.css            # Stylesheet
+│   └── style.css                 # Stylesheet
 ├── data/
-│   └── tasks.db             # SQLite database (auto-generated)
+│   └── tasks.db                  # SQLite database (auto-generated)
 ├── config/
-│   └── __init__.py          # App configuration
+│   └── __init__.py               # App configuration
 ├── models/
-│   ├── __init__.py          # Database initialization
-│   └── task.py              # Task model
+│   ├── __init__.py               # Database initialization
+│   └── task.py                   # Task model
 ├── routes/
 │   ├── __init__.py
-│   ├── api.py               # API endpoints
-│   └── web.py               # Web routes
-├── .env                     # Environment variables
-├── .env.example             # Example environment file
-├── .gitignore               # Git ignore file
-├── requirements.txt         # Python dependencies
-└── README.md                # README.md file
+│   ├── api.py                    # API endpoints
+│   └── web.py                    # Web routes
+├── .env                          # Environment variables
+├── .env.example                  # Example environment file
+├── .gitignore                    # Git ignore file
+├── requirements.txt              # Python dependencies
+└── README.md                     # README.md file
 ```
 
 ## Installation
@@ -53,12 +53,17 @@ task-manager/
 git clone https://github.com/emon51/task-manager-application-flask.git
 ```
 
-### 2. Create virtual environment
+### 2. Change directory
+```bash
+cd task-manager-application-flask
+```
+
+### 3. Create virtual environment
 ```bash
 python3 -m venv venv
 ```
 
-### 3. Activate virtual environment
+### 4. Activate virtual environment
 **On Windows:**
 ```bash
 venv\Scripts\activate
@@ -68,23 +73,23 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-### 4. Create a directory named '**data**' in the root directory
+### 5. Create a directory named '**data**' in the root directory
 ```bash
 mkdir data
 ```
 
-### 5. Rename **.env.example** file to **.env**
+### 6. Rename **.env.example** file to **.env**
 ```bash
 mv .env.example .env
 ```
 
-### 6. Install dependencies
+### 7. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
 
-### 7. Run the application
+### 8. Run the application
 ```bash
 python3 app.py
 ```
