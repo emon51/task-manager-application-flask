@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: whitesmoke;
+}
+
+header {
+    background: darkslategray;
+    color: white;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 5px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+}
+
+nav {
+    margin-top: 0.5rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    background: white;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px lightgray;
+}
+
+.btn {
+    display: inline-block;
+    background: darkslategray;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: dimgray;
+}
+
+.view-all-tasks {
+    margin-top: 2rem;
+}
+
+.task-header {
+    margin-bottom: 1.5rem;
+}
+
+.filter-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-form select {
+    padding: 8px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.task-table th,
+.task-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid lightgray;
+}
+
+.task-table th {
+    background-color: ghostwhite;
+    font-weight: bold;
+}
+
+.task-table tr:hover {
+    background-color: ghostwhite;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.status-todo {
+    background-color: gold;
+    color: black;
+}
+
+.status-in_progress {
+    background-color: cadetblue;
+    color: white;
+}
+
+.status-done {
+    background-color: forestgreen;
+    color: white;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 0.9em;
+}
+
+.btn-success {
+    background-color: forestgreen;
+}
+
+.btn-success:hover {
+    background-color: darkgreen;
+}
+
+.no-tasks {
+    text-align: center;
+    padding: 2rem;
+    color: dimgray;
+}
