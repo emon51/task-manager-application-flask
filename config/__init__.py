@@ -6,6 +6,6 @@ load_dotenv()
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
-    SECRET_KEY = os.getenv('SECRET_KEY', '1234')
+    SECRET_KEY = os.getenv('SECRET_KEY', '')
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'sqlite:///' + os.path.join(BASE_DIR, '..', 'data', 'tasks.db'))
     SQLALCHEMY_TRACK_MODIFICATIONS = False
