@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks - Task Manager{% endblock %}
+
+{% block content %}
+<div class="task-header">
+    <h2>All Tasks</h2>
+</div>
+
+<form method="GET" action="/tasks" class="filter-form">
+    <label for="status">Filter by status:</label>
+    <select name="status" id="status" onchange="this.form.submit()">
+        <option value="">All</option>
+        <option value="todo" {% if status_filter == 'todo' %}selected{% endif %}>To Do</option>
+        <option value="in_progress" {% if status_filter == 'in_progress' %}selected{% endif %}>In Progress</option>
+        <option value="done" {% if status_filter == 'done' %}selected{% endif %}>Done</option>
+    </select>
+</form>
+
+{% if tasks %}
+<table class="task-table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Due Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>
+                <span class="status-badge status-{{ task.status }}">
+                    {{ task.status.replace('_', ' ').title() }}
+                </span>
+            </td>
+            <td>{{ task.due_date if task.due_date else '-' }}</td>
+            <td>
+                {% if task.status != 'done' %}
+                <form method="POST" action="/tasks/{{ task.id }}/mark-done">
+                    <button type="submit" class="btn btn-small btn-success">Mark as Done</button>
+                </form>
+                {% else %}
+                <span style="color: darkgreen;">Completed</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="no-tasks">
+    <p>No tasks found.</p>
+</div>
+{% endif %}
+{% endblock %}
