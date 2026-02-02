@@ -18,6 +18,6 @@ class Task(db.Model):
             'title': self.title,
             'description': self.description,
             'status': self.status,
-            'created_at': self.created_at.isoformat(),
+            'created_at': self.created_at.strftime('%Y-%m-%d'),
             'due_date': self.due_date.strftime('%Y-%m-%d') if self.due_date else None
         }
